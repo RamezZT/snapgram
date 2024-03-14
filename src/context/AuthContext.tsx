@@ -18,7 +18,7 @@ const INITIAL_STATE: IContextType = {
   setIsAuthenticated: () => {},
   checkAuthUser: async () => false as boolean,
 };
-
+//here we are dealing with supa base
 export const AuthContext = createContext<IContextType>(INITIAL_STATE);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser>(INITIAL_USER);
