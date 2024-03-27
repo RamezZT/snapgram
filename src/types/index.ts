@@ -30,15 +30,28 @@ export type INewPost = {
     tags?: string;
 };
 
+
+
 export type IUpdatePost = {
     postId: string;
-    caption: string;
+
     imageId: string;
     imageUrl: URL;
+
+    caption: string;
     file: File[];
     location?: string;
     tags?: string;
 };
+
+// export type IPost = {
+//     postId: string;
+//     imageId: string;
+//     imageUrl: URL;
+//     caption: string;
+//     location?: string;
+//     tags?: string;
+// };
 
 export type IUser = {
     id: string;

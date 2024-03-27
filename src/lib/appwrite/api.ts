@@ -43,16 +43,24 @@ export async function signInAccount(user: { email: string; password: string }) {
         console.log(error)
     }
 }
+export async function signOutAccount() {
+    try {
+        return await account.deleteSession("current");
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export async function getCurrentUser() {
     try {
+        //this function gives us the currently logged in user
         const currentAccount = await account.get();
         if (!currentAccount) throw Error;
-
+        //note that the account here is only used for verification so it doesn't have all the data
+        //about the user so we will have to get the docuement from the database
         const currentUser = await
             databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.userCollectionId, [Query.equal('accountId', currentAccount.$id)]);
         if (!currentUser) throw Error;
-
         return currentUser.documents[0];
     } catch (error) {
         console.log(error)
