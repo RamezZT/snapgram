@@ -114,6 +114,6 @@ export function useSearchPosts(searchTerm: string) {
     return useQuery({
         queryKey: [QUERY_KEYS.SEARCH_POSTS, searchTerm],
         queryFn: () => searchPosts(searchTerm),
-        enabled: !!searchTerm,
+        enabled: searchTerm !== "",
     });
 }

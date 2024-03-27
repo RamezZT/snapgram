@@ -216,7 +216,7 @@ export async function searchPosts(searchTerm: string) {
             appwriteConfig.postCollectionId,
             [Query.search("caption", searchTerm)]
         );
-
+        console.log(posts)
         if (!posts) throw Error;
 
         return posts;

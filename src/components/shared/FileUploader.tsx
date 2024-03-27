@@ -10,7 +10,7 @@ type FileUploaderProps = {
 const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
   ({ fieldChange, mediaUrl }, ref) => {
     const [, setFile] = useState<File[]>([]);
-    const [fileUrl, setFileUrl] = useState();
+    const [fileUrl, setFileUrl] = useState("");
     useEffect(() => setFileUrl(mediaUrl), [mediaUrl]);
 
     const onDrop = useCallback(
