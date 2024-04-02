@@ -26,3 +26,24 @@ export function timeSince(dateString: string): string {
 export const checkIsLiked = (likeList: string[], userId: string): boolean => {
   return likeList.includes(userId);
 };
+
+export const readImages = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api');
+    const { data } = await response.json();
+
+    // Map over the image paths and fetch each image
+    const imgs = await Promise.all(data.map(async path => {
+      const response = await fetch('/images/' + path);
+      const blob = await response.blob();
+      return blob;
+    }));
+
+    const imgUrls = imgs.map(blob => URL.createObjectURL(blob));
+    return imgUrls; // Return the array of image blobs
+
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it in the caller function
+  }
+};

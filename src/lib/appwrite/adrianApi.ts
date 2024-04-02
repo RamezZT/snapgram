@@ -120,6 +120,7 @@ export async function signOutAccount() {
 // ============================== CREATE POST
 export async function createPost(post: INewPost) {
     try {
+        console.log(post)
         // Upload file to appwrite storage
         const uploadedFile = await uploadFile(post.file[0]);
 
