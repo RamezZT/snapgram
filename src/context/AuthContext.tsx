@@ -117,7 +117,7 @@ const INITIAL_STATE: IContextType = {
 export const AuthContext = createContext<IContextType>(INITIAL_STATE);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser>(INITIAL_USER);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const navigate = useNavigate();
   const checkAuthUser = async () => {

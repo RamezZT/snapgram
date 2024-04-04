@@ -20,3 +20,10 @@ export const PostValidation = z.object({
     location: z.string().min(2).max(100),
     file: z.custom<File[]>(),
 });
+
+export const EditPostValidation = z.object({
+    name: z.string().min(2).max(50),
+    username: z.string().min(2).max(50),
+    email: z.string().min(3).max(50),
+    bio: z.string().max(200)
+});

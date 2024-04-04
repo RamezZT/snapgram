@@ -26,7 +26,7 @@ const Explore = () => {
         <Loader />
       </div>
     );
-
+  console.log(posts);
   const shouldShowSearchResults = debouncedSearch !== "";
   const shouldShowPosts =
     !shouldShowSearchResults &&

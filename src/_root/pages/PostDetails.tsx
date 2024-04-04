@@ -32,7 +32,7 @@ const PostDetails = () => {
     <div className="p-12 xl:p-24 flex-col flex-1 overflow-scroll custom-scrollbar transition-all">
       <div className="flex gap-4 max-md:hidden mb-12">
         <Link to="./">
-          <img src="/public/assets/icons/back.svg" alt="back" />
+          <img src="/assets/icons/back.svg" alt="back" />
         </Link>
         <p>Back</p>
       </div>

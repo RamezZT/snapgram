@@ -120,9 +120,23 @@
   .user-grid {
     @apply w-full grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-7 max-w-5xl;
   }
+  .grid-post-link{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 24px;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(31 31 34 / var(--tw-border-opacity));
+  }
 
   /* Explore */
   .explore-container {
+    @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
+  }
+  .savedPosts-container{
     @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
   }
 

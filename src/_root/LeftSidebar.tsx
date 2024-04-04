@@ -1,51 +1,14 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import {
-  useCreatePost,
-  useSignOutAccount,
-} from "@/lib/react-query/queriesAndMutations";
+import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
 import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
 import { sidebarLinks } from "@/constants";
-import { INavLink, INewPost } from "@/types";
-import { readImages } from "@/lib/utils";
-import { ID } from "appwrite";
-import { createPost } from "@/lib/appwrite/adrianApi";
-
-const handleUploadAll = async (createPost, userId) => {
-  // const path = "D:/New folder/ALL/wallpapers/";
-  const images: string[] = await readImages();
-
-  const uploadPost = async (imgBlob) => {
-    const res = await fetch(imgBlob);
-    const img = await res.blob();
-    const imgUrl = URL.createObjectURL(img);
-    try {
-      // Fetch the image data from the blob URL
-      const response = await fetch(imgUrl);
-      const fileData = await response.blob();
-      const file = new File([fileData], "image", { type: "image/jpeg" });
-      // Create a FormData object to send the image data to the server
-      // Create a document in your database with the uploaded image URL or other relevant data
-      const post: INewPost = {
-        userId: userId,
-        caption: "caption",
-        file: new Array<File>(file),
-      };
-      const postedPost = await createPost(post);
-      console.log(postedPost);
-      console.log("Post created successfully");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
-  };
-  images.map((img) => uploadPost(img));
-};
+import { INavLink } from "@/types";
 
 const LeftSidebar = () => {
   const { pathname } = useLocation();
   const { mutate: signOut, isSuccess } = useSignOutAccount();
-  const { mutate: createPost } = useCreatePost();
   const { user } = useUserContext();
   const navigate = useNavigate();
   useEffect(() => {
@@ -74,7 +37,7 @@ const LeftSidebar = () => {
           />
           <div className="flex flex-col">
             <p className="body-bold">{user.name}</p>
-            <p className="small-regular text-light-3">@{user.name}</p>
+            <p className="small-regular text-light-3">@{user.username}</p>
           </div>
         </Link>
 
@@ -104,16 +67,6 @@ const LeftSidebar = () => {
               </li>
             );
           })}
-          <li className={`leftsidebar-link group `}>
-            <button
-              onClick={() => {
-                handleUploadAll(createPost, user.id);
-              }}
-              className="flex gap-4 items-center p-4"
-            >
-              Upload all posts
-            </button>
-          </li>
         </ul>
       </div>
       <Button
